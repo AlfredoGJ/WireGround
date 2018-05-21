@@ -1,6 +1,8 @@
 <?php
 session_start();
 include('conexion.php');
+
+
 $errors='';
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
@@ -14,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $statement->bindParam(':email',$email);
     $statement->execute();
     $datos= $statement->fetchObject();
-    var_dump($datos);
+    // var_dump($datos);
     if($datos!=false)
     {
         var_dump($contraseña);
@@ -22,7 +24,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         if(password_verify($contraseña,$datos->pass)==true)
         {
             $_SESSION['usuario']=$usuario;
-            header('Location: pagina-principal.php');
+            header('Location: index.php');
             return;    
         }
         else
@@ -50,7 +52,9 @@ include('conexion.php');
 
 <?include('encabezado.php');?>
 
-
+        <script>
+            hideAll();
+        </script>
         <div class="container-fluid">
 
             <div class="row my-4 py-4">
@@ -75,7 +79,7 @@ include('conexion.php');
     
                
                
-                <a href="#"button type="button" class="btn btn-light btn-block rounded border">Create an account</a> 
+                <a href="register.php" button type="button" class="btn btn-light btn-block rounded border">Create an account</a> 
              
                 
                 </div>

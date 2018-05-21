@@ -2,11 +2,9 @@
 include('conexion.php');
 $error='';
 
-
-
-
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
     $email= filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL);
-    
     $password= filter_input(INPUT_POST,'password',FILTER_SANITIZE_STRING); 
     $password2= filter_input(INPUT_POST,'password2',FILTER_SANITIZE_STRING);
     $username= filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
@@ -60,7 +58,7 @@ if( $email!=false)
                         // var_dump($statement);
                         $statement->execute();
 
-                        header('Location: pagina-principal.php');
+                        header('Location: index.php');
                         $error='USUARIO REGISTRADO CORRECTAMENTE';
 
                     }
@@ -90,10 +88,18 @@ if( $email!=false)
 }
 else
     $error='La direccion de e-mail no es correcta';
+}
+
+
+
 
 ?>
 
 <?include('encabezado.php');?>
+
+        <script>
+            hideAll();
+        </script>
         <div class="container-fluid">
 
             <div class="row my-4 py-4">
@@ -122,14 +128,14 @@ else
                 </form>
                 </div>
                 <div class="col-4">
-                <?
+                <?php
                 if($error!= '')
                 {
                     echo'<div class="alert alert-danger" role="alert">';
                     echo $error;
                     echo'</div>';
                 }
-            ?>
+                ?>
                 
                 </div>  <!--Relleno-->
 
