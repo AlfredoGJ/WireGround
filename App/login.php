@@ -50,7 +50,7 @@ include('conexion.php');
 
 
 
-<?include('encabezado.php');?>
+<?php include('encabezado.php');?>
 
         <script>
             hideAll();
