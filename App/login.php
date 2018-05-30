@@ -23,8 +23,9 @@ if($_SERVER['REQUEST_METHOD']=='POST')
         var_dump($datos->pass);
         if(password_verify($contraseña,$datos->pass)==true)
         {
-            $_SESSION['usuario']=$usuario;
-            header('Location: index.php');
+            $_SESSION['usuario']=$datos;
+            
+            header('Location: perfil.php');
             return;    
         }
         else
@@ -86,7 +87,7 @@ include('conexion.php');
                 <div class="col-4"></div>  <!--Relleno-->
                 
                 <div class="row">
-                <?if($errors!= '')
+                <?php if($errors!= '')
                 {
                     echo'<div class="alert alert-danger" role="alert">';
                     echo $errors;
@@ -100,4 +101,4 @@ include('conexion.php');
         </div>
 
 
-        <?include('pie.php');?>
+        <?php include('pie.php');?>

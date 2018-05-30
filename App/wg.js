@@ -44,3 +44,19 @@ function hideAll()
     perfil.classList.add('d-none');
     cerrar.classList.add('d-none');
 }
+
+function onEditor()
+{
+    var cerrar = document.getElementById( 'cerrar' );
+    var guardar = document.getElementById( 'guardar' );   
+
+    cerrar.classList.remove('d-none');
+    guardar.classList.remove('d-none');
+
+}
+
+function onPerfil()
+{
+    var perfil = document.getElementById( 'perfil' );
+    perfil.classList.add('d-none');
+}

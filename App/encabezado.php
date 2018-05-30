@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     </head>
 
 
@@ -40,7 +40,9 @@
                 
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                    
+                       
+
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -55,11 +57,20 @@
                 <a type="button"  id="register" class="btn btn-primary mx-2 d-none" href="register.php">Register</a>
                 <a type="button" id="login" class="btn btn-warning mx-2 d-none" href="login.php">Login</a>
 
-                <button type="button" id="perfil" class="btn btn-default" href="perfil.php" >
-                   <i class="fa fa-user-o" aria-hidden="true"></i> Perfil
-                </button>
+                <a type="button" id="perfil" class="btn btn-default" href="perfil.php" >
+                  <i class="far fa-user"></i> Perfil
+                </a>
+
                 <a name="" id="cerrar" class="btn btn-link" href="logout.php" role="button">Cerrar sesion</a>
-               
+
+                <button type="button" id="guardar" class="btn btn-info mx-2 d-none" href="perfil.php" onclick="saveDiagram()" >
+                  <i class="far fa-save    "></i>    Guardar
+                </button>
+                
+                <button type="button" id="cerrar" class="btn btn-danger mx-2 d-none" href="perfil.php" >
+                  <i class="far fa-times-circle    "></i>    Cerrar
+                </button>
+                
                 
             </ul>
 
@@ -94,6 +105,15 @@
             'onSessionClosed();',
             '</script>';
         }
+        if(isset($_SESSION['onEditor']) && $_SESSION['onEditor']=='yes')
+        {
+            echo '<script type="text/javascript" src="wg.js">',
+            '</script>',
+            '<script>',
+            'onEditingDiagram();',
+            '</script>';
+        }
+
 
 
 

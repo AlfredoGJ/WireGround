@@ -1,4 +1,7 @@
 
+
+
+
 // FUNCIONES PARA EL ARRASTRADO DE LOS ELEMENTOS
 
 function allowDrop(ev)
@@ -30,6 +33,52 @@ function dropElement(ev)
 }
 
 // FUNCIONES PARA EL ARRASTRADO DE LOS ELEMENTOS
+
+
+
+
+// FUNCION DE GUARDADO, CARGA E INICIALIAZACIN DEL DIAGRAMA
+
+function saveDiagram()
+{
+  var obj=JSON.stringify(myDiagram);
+  // console.log(obj)
+  
+  var http = new XMLHttpRequest();
+  var url = 'saveDiagram.php';
+  var params = 'nombreDiagrama='+myDiagram.name+'&data='+obj;
+  http.open('POST', url, true);
+
+  //Send the proper header information along with the request
+  http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+        console.log(http.responseText);
+    }
+}
+  http.send(params);
+
+}
+
+
+function loadDiagram(diagram)
+{
+  myparsedDiagram= JSON.parse(diagram);
+  console.log(myDiagram);
+
+  myDiagram.name=myparsedDiagram.name;
+  myDiagram.elements=myparsedDiagram.elements;
+
+}
+
+
+
+function initDiagram()
+{
+  var myDiagram= new Diagram('Nuevo','user');
+}
 
 
 
@@ -146,7 +195,7 @@ function canvasMouseMove(event)
   var y=event.clientY -rect.top;
 
 
-  console.log(x,y);
+  // console.log(x,y);
   
   // if(connector!=-1)  
 
@@ -165,7 +214,7 @@ var selectedElement=null;
 var selectedElementConections=null;
 var myCanvas= new canvasWrapper('editor');
 var mesh= new Mesh(myCanvas.width,myCanvas.height,10);
-var myDiagram= new Diagram('Nuevo','user');
+var myDiagram= new Diagram('hola','user');
 
 
 myCanvas.setEventListener('mousedown',canvasMouseDown);

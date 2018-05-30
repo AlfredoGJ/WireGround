@@ -147,4 +147,4 @@ else
         </div>
 
 
-        <?include('pie.php');?>
+        <?php include('pie.php');?>

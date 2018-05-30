@@ -1,14 +1,27 @@
 <?php
+session_start();
+
+$diagram;
+if(!isset($_SESSION['usuario']))
+{
+    header('Location:index.php');
+    return;
+}
+
+var_dump($_SESSION['diagrama']);
+
+
+
+
+
+
 include('encabezado.php');
-
-
-
 ?>
 
         
 
         <script>
-            hideAll();
+            onEditor();
         </script>
 
         <!-- Contenido -->
@@ -199,5 +212,30 @@ include('encabezado.php');
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+
+<?php
+
+if(isset($_SESSION['diagrama']) && $_SESSION['diagrama']!=-1)
+{
+    //cargar diagrama  
+    // echo 'CARGANDO DIAGRAMA';
+    echo '<script>';
+    echo 'loadDiagram(';
+    echo '\''.$_SESSION['diagrama']->datos.'\'';
+    echo ');';
+    echo '</script>';
+}
+
+else
+{
+    // inicializar diagrama nuevo
+    // echo 'INICIALIZANDO NUEVO DIAGRAMA';
+}
+
+
+?>
+
+
+
+</body>
 </html>
