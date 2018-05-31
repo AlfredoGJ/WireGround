@@ -1,7 +1,3 @@
-
-
-
-
 // FUNCIONES PARA EL ARRASTRADO DE LOS ELEMENTOS
 
 function allowDrop(ev)
@@ -27,7 +23,7 @@ function dropElement(ev)
 
 
   mesh.allocate(element);
-  myDiagram.addElement(element);
+  Diagram.addElement(element,myDiagram);
   console.log(element);
   
 }
@@ -42,7 +38,7 @@ function dropElement(ev)
 function saveDiagram()
 {
   var obj=JSON.stringify(myDiagram);
-  // console.log(obj)
+  console.log(obj);
   
   var http = new XMLHttpRequest();
   var url = 'saveDiagram.php';
@@ -63,13 +59,13 @@ function saveDiagram()
 }
 
 
-function loadDiagram(diagram)
+function loadDiagram(diagrama)
 {
-  myparsedDiagram= JSON.parse(diagram);
-  console.log(myDiagram);
-
-  myDiagram.name=myparsedDiagram.name;
-  myDiagram.elements=myparsedDiagram.elements;
+  myparsedDiagram= JSON.parse(diagrama);
+  console.log('parsed diagram',myparsedDiagram);
+  myDiagram=myparsedDiagram;
+  // MyDiagram = Diagram.createCopy(myparsedDiagram);
+  console.log('my Diagram volcado:',myDiagram);
 
 }
 
@@ -91,7 +87,7 @@ function canvasMouseDown(event)
 
 
   // USUARIO CLICKEA SOBRE UN CONECTOR
-  var result=myDiagram.isMouseOverConector(x,y);
+  var result=Diagram.isMouseOverConector(x,y,myDiagram);
   if(result!=-1)
   {
     tmpConnection= new Connection();
@@ -103,11 +99,11 @@ function canvasMouseDown(event)
     
   }
   // USUARIO CLICKEA SOBRE UN ELEMENTO
-  var element= myDiagram.isMouseOverElement(x,y);
+  var element= Diagram.isMouseOverElement(x,y,myDiagram);
   if(element!=-1)
   {
     selectedElement=element;
-    selectedElementConections= myDiagram.findConnections(element.name);
+    selectedElementConections= Diagram.findConnections(element.name,myDiagram);
     console.log(selectedElementConections);
     myCanvas.setEventListener('mousemove',moveElement);
     myCanvas.setEventListener('mouseup',placeElement);
@@ -125,11 +121,11 @@ function makeConnection(event)
   var x=event.clientX - rect.left;
   var y=event.clientY - rect.top;
 
-  var result=myDiagram.isMouseOverConector(x,y);
+  var result=Diagram.isMouseOverConector(x,y,myDiagram);
   if(result!=-1)
   {
     tmpConnection.setEnd(result[0].name,result[1]);
-    myDiagram.addConnection(tmpConnection);
+    Diagram.addConnection(tmpConnection,myDiagram);
    
     console.log('---conected...',tmpConnection);
     tmpConnection=null;
@@ -141,17 +137,13 @@ function makeConnection(event)
 function canvasMouseUp(event)
 {
  
-  
-
 }
 
 
 function connectionLineDraw(event)
 {
  console.log('connecting...'); 
- var startConn= myDiagram.findConnector(tmpConnection.start);
-//  console.log(startConn);
-//  console.log(event.x, event.y)
+ var startConn= Diagram.findConnector(tmpConnection.start,myDiagram);
  tmpConnection.end=["Tmp",event.x,event.y]; 
  
 }
@@ -188,17 +180,9 @@ function placeElement()
 
 function canvasMouseMove(event)
 {
-  // console.log('moving...');
-
   var rect = myCanvas.canvas.getBoundingClientRect();
   var x=event.clientX -rect.left;
-  var y=event.clientY -rect.top;
-
-
-  // console.log(x,y);
-  
-  // if(connector!=-1)  
-
+  var y=event.clientY -rect.top; 
 }
 
 
@@ -214,9 +198,9 @@ var selectedElement=null;
 var selectedElementConections=null;
 var myCanvas= new canvasWrapper('editor');
 var mesh= new Mesh(myCanvas.width,myCanvas.height,10);
-var myDiagram= new Diagram('hola','user');
+var myDiagram = new Diagram('hola','user');
 
-
+console.log('ami loop',myDiagram);
 myCanvas.setEventListener('mousedown',canvasMouseDown);
 myCanvas.setEventListener('mousemove',canvasMouseMove);
 
@@ -229,9 +213,7 @@ function cycle()
 {
   myCanvas.clear(); 
   // mesh.Draw(myCanvas); 
-  myDiagram.draw(myCanvas);
- 
-
+  Diagram.Sdraw(myCanvas,myDiagram);
   window.requestAnimationFrame(cycle);
 }
 

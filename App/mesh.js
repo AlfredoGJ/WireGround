@@ -6,6 +6,8 @@ class Mesh
     this.height=y;
     this.blockSize=bs;
   }
+  static foo()
+  {console.log('Foo');}
 
   Draw(canvasWrpr)
   { 
@@ -49,7 +51,8 @@ class Mesh
         connectors[name]= new Connector(x+thing.x,y+thing.y,name);
 
       }
-      
+      // console.log('PEPE LE PU');
+      // console.log(connectors);
       thing.connectors=connectors;
   }
 
