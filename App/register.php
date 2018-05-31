@@ -88,6 +88,9 @@ if( $email!=false)
 }
 else
     $error='La direccion de e-mail no es correcta';
+
+
+
 }
 
 
@@ -108,13 +111,13 @@ else
                         <div class="display-4 mb-3">Register</div>
 
                         <div class="form-group ">
-                            <input type="text" class="form-control my-2" name="nombre" id="Username" placeholder="Nombre">
-                            <input type="text" class="form-control my-2" name="apaterno" id="Username" placeholder="Primer Apellido">
-                            <input type="text" class="form-control my-2" name="amaterno" id="Username" placeholder="Segundo Apellido">
-                            <input type="email" class="form-control my-2" name="email" id="Email" aria-describedby="emailHelp" placeholder="Email">
-                            <input type="password" class="form-control my-2" name="password" id="Password" placeholder="Contraseña">
-                            <input type="password" class="form-control my-2" name="password2" id="PasswordRepeat" placeholder="Repetir Password">
-                            <input type="text" class="form-control my-2" name="username" id="Username" placeholder="Nombre de usuario">
+                            <input type="text" class="form-control my-2" name="nombre" id="Username" placeholder="Nombre" value= "<?echo $nombre;?>">
+                            <input type="text" class="form-control my-2" name="apaterno" id="Username" placeholder="Primer Apellido" value="<? echo $apaterno; ?>">
+                            <input type="text" class="form-control my-2" name="amaterno" id="Username" placeholder="Segundo Apellido" value="<? echo $amaterno; ?>">
+                            <input type="email" class="form-control my-2" name="email" id="Email" aria-describedby="emailHelp" placeholder="Email" value="<? echo $email; ?>">
+                            <input type="password" class="form-control my-2" name="password" id="Password" placeholder="Contraseña" value="<? echo $password; ?>">
+                            <input type="password" class="form-control my-2" name="password2" id="PasswordRepeat" placeholder="Repetir Password" value="<? echo $password2; ?>">
+                            <input type="text" class="form-control my-2" name="username" id="Username" placeholder="Nombre de usuario" value="<? echo $username; ?>">
                         </div>
 
                         <label>Fecha de nacimiento</label>
