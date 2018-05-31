@@ -9,9 +9,10 @@
                   <div class="carousel-item active">
                     <img class="d-block w-100 img-fluid" src="Imagenes/nicolas-thomas-540353-unsplash.jpg" alt="First slide" height="200">
                     <div class="carousel-caption d-none d-md-block">
-                            <h5>Circuit diagrams made easy</h5>
-                            <p>Wireground is an web platform for circuit diagram drawing specially thinked for people who likes to 
-                                learn and has no time for installing extensive and expensive software.
+                            <h5>Creación de diagramas de Circuitos Hecho fácil</h5>
+                            <p class ="">
+                                    Wireground es un aplataform web para creación de diagramas de circuitos especialmente pensada para personas 
+                                a quienes les gusta aprender  y no tiene tiempo de instalar software costoso y pesado.
                             </p>
                           </div>
                         
@@ -22,12 +23,16 @@
 
         <div class="container-fluid">
             <!-- Caracteristica 1 -->
-            <div class="row bg-light p-2 m-2">
+            <div class="row bg-light p-4 m-2  ">
                 <div class="col">
-                     <div class="display-4">Easy</div>
-                     <p>Circuit diagram drawing has never been so easy, Wireground provides only the necesary tools for creating 
-                         complete circuit diagrams in only a few clicks
+                     <div class="display-4">Fácil</div>
+                     <p class ="h5 " >
+                        La creacion de diagramas nunca fue tan fácil, Wireground provee las herramientas necesarias para
+                        crear diagramas de circuitos completos en solo unos cunatos clicks.
+
+                     
                      </p>
+                     <img src="Imagenes/ddd.png"> 
                 </div>
                 <div class="col">
                         <!-- <img src="..." class="img-thumbnail " alt="car1" > -->
@@ -35,10 +40,11 @@
                 
             </div>
             <!-- CAracteristica 2 -->
-            <div class="row bg-light p-2 m-2">
+            <div class="row bg-light p-4 m-2">
                     <div class="col">
-                         <div class="display-4">Cloud powered</div>
-                         <p>You don't need to save it, we do it for you</p>
+                         <div class="display-4">Interfaz amigable y sencilla</div>
+                         <p>Solo tienes que arrastrar los elementos que desees en tu diagrama, conecta los elementos y listo! </p>
+                         <img src="Imagenes/dia.png" width="600"> 
                     </div>
                     <div class="col">
                             <!-- <img src="" class="img-thumbnail " alt="car1"> -->
@@ -46,10 +52,11 @@
                     
                 </div>
             <!-- CAracteristica 3 -->
-            <div class="row bg-light p-2 m-2">
+            <div class="row bg-light p-4 m-2">
                     <div class="col">
-                         <div class="display-4">Run Anywhere</div>
-                         <p>You can run in anywhere, since its on the web and its compatible with multiple ddevices</p>
+                         <div class="display-4">Guarda tu progreso </div>
+                         <p>Crea un perfil y guarda crea todos tus diagramas, los puedes editar cuando quieras</p>
+                         <img src="Imagenes/diagramas.png" width="500"> 
                     </div>
                     <div class="col">
                             <!-- <img src="" class="img-thumbnail " alt="car1"> -->

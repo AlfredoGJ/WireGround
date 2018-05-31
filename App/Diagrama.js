@@ -34,7 +34,7 @@ class Diagram
     for (var i =0;i<diagram.elements.length;i++)
          Component.Sdraw(canvasWrpr,diagram.elements[i]); 
 
-      console.log('S-Diagram-draw');
+    //   console.log('S-Diagram-draw');
   }
 
   static addElement(element,diagram)

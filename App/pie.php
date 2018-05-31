@@ -6,7 +6,7 @@
         
        <ul class="nav justify-content-center bottom bg-dark text-light py-4">
             <li class="nav-item">
-                Uaslp 2018
+                WireGround &#174;  -  Uaslp 2018
             </li>
         </ul>
 

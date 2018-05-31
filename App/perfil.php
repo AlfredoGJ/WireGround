@@ -7,8 +7,7 @@ if(!isset($_SESSION['usuario']))
         header('Location:index.php');
         return;
     }
-
-    // var_dump($_SESSION['usuario']);
+    
     $nombre=$_SESSION['usuario']->nombre;
     $username=$_SESSION['usuario']->username;
     $email=$_SESSION['usuario']->email;
@@ -18,12 +17,7 @@ if(!isset($_SESSION['usuario']))
     $statement->bindParam(':id_usuario',$id_usuario);
     $id_usuario=$_SESSION['usuario']->id;
     $statement->execute();
-    // K$datos= $statement->fetchObject();
-
-    // var_dump($datos);
-
-
-
+    
 
     if($_SERVER['REQUEST_METHOD']=='POST')
     {
@@ -57,6 +51,36 @@ if(!isset($_SESSION['usuario']))
             return;
         }
 
+        if(isset($_POST['Nuevo']) && $_POST['Nuevo']=='yes')
+        {
+            $sql='INSERT INTO diagramas (nombre, descripcion, id_usuario) VALUES (:nombre, :descripcion, :id_usuario) ';
+            $statement= $conexion->prepare($sql); 
+            $statement->bindParam(':nombre',$nombre);
+            $statement->bindParam(':descripcion',$descripcion);
+            $statement->bindParam(':id_usuario',$id_usuario);
+            $nombre=$_POST['Nombre'];
+            $descripcion=$_POST['Descripcion'];
+            $id_usuario=$_SESSION['usuario']->id;
+
+
+            $datos=$statement->execute(); 
+            $diagrama= new stdClass();
+            $diagrama->nombre=$nombre;
+            $diagrama->descripcion=$descripcion;
+            $diagrama->id_usuario=$id_usuario;
+
+            // $diagrama['nombre']=$nombre;
+            // $diagrama['descripcion']=$descripcion;
+            // $diagrama['id_usuario']=$id_usuario;
+
+            $_SESSION['diagrama']=$diagrama;
+            var_dump($diagrama);
+            header('Location: editor.php');
+            return;
+        }
+
+
+
 
 
     }
@@ -67,8 +91,8 @@ if(!isset($_SESSION['usuario']))
         $cont=0;
 
         $d=$stmnt->fetchObject();
-        echo'<form action="#" method="POST">';
-        echo '<table class="table">';
+        echo'<form action="#" method="POST" class="row my-3">';
+        echo '<table class="table my-3">';
         echo    '<thead>';       
         echo    '</thead>';
         echo    '<tbody>';
@@ -126,9 +150,8 @@ if(!isset($_SESSION['usuario']))
         <script>
             onPerfil();
         </script>
-        <div class="container py-4 my-4">
+        <div class="container py-4 my-4 bg-light rounded  border">
         
-            <div class="row bg-light rounded p-4 border">
                 
                 <div class="row my-4">
                     <div class="col-4">
@@ -139,17 +162,59 @@ if(!isset($_SESSION['usuario']))
                     <div class ="col-6 mx-3">
                         
                         <div class="display-4"> <?php echo $nombre; ?> </div>
-                        <h4><b>User: </b><?php echo $username;?></h4>
+                        <h4><b>User: </b> <?php echo $username;?></h4>
                         <h4><b>E-mail: </b> <?php echo $email;?> </h4>
                         
                     </div>
-
                     
                     
                 </div>
                
                
+                <div class="row bg-secondary text-light">
+                    <div class="col-lg-6">
+                            <div class="display-4 m-4">Mis diagramas</div>
+                    </div>
 
+                    <div class="col-lg-6 text-center my-4">
+                        <button name="" id="" class="btn btn-success col-10 py-3 my-2" href="#" role="button" data-target="#exampleModal" data-toggle="modal">
+                                Crear Diagrama
+                        </button>
+                    </div>
+                    
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title text-dark" id="exampleModalLabel">Nuevo diagrama</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form method="POST" >
+                                    <div class="form-group"  >
+                                      <label for="recipient-name" class="col-form-label text-dark">Nombre:</label>
+                                      <input type="text" class="form-control" id="recipient-name" name="Nombre">
+                                      <input type="hidden" name="Nuevo" value="yes" >
+                                    </div>
+                                    <div class="form-group" >
+                                      <label for="message-text" class="col-form-label text-dark">Descripcion:</label>
+                                      <textarea class="form-control" id="message-text" name="Descripcion"></textarea>
+                                    </div>
+                                 
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                  <button type="submit" class="btn btn-primary"   >Crear diagrama</button>
+                                </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                   
+
+                </div>
                 <!-- Diagramas -->
                 
                  <?php  displayDiagramas($statement); ?>
@@ -158,7 +223,7 @@ if(!isset($_SESSION['usuario']))
 
                 
                       
-                </div>
+             
 
 
         </div>

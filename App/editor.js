@@ -62,10 +62,10 @@ function saveDiagram()
 function loadDiagram(diagrama)
 {
   myparsedDiagram= JSON.parse(diagrama);
-  console.log('parsed diagram',myparsedDiagram);
+  // console.log('parsed diagram',myparsedDiagram);
   myDiagram=myparsedDiagram;
   // MyDiagram = Diagram.createCopy(myparsedDiagram);
-  console.log('my Diagram volcado:',myDiagram);
+  // console.log('my Diagram volcado:',myDiagram);
 
 }
 
@@ -200,7 +200,7 @@ var myCanvas= new canvasWrapper('editor');
 var mesh= new Mesh(myCanvas.width,myCanvas.height,10);
 var myDiagram = new Diagram('hola','user');
 
-console.log('ami loop',myDiagram);
+// console.log('ami loop',myDiagram);
 myCanvas.setEventListener('mousedown',canvasMouseDown);
 myCanvas.setEventListener('mousemove',canvasMouseMove);
 

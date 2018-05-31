@@ -45,10 +45,15 @@ function hideAll()
     cerrar.classList.add('d-none');
 }
 
-function onEditor()
+function onEditor(titulo)
 {
     var cerrar = document.getElementById( 'cerrar' );
     var guardar = document.getElementById( 'guardar' );   
+    var title= document.getElementById('titulo');
+
+    
+    title.innerHTML=titulo;
+    title.classList.remove('d-none');
 
     cerrar.classList.remove('d-none');
     guardar.classList.remove('d-none');

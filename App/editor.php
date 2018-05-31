@@ -8,21 +8,14 @@ if(!isset($_SESSION['usuario']))
     return;
 }
 
-var_dump($_SESSION['diagrama']);
-
-
-
-
-
+// var_dump($_SESSION['diagrama']);
 
 include('encabezado.php');
 ?>
 
         
 
-        <script>
-            onEditor();
-        </script>
+       
 
         <!-- Contenido -->
         <div class="container-fluid">
@@ -219,11 +212,35 @@ if(isset($_SESSION['diagrama']) && $_SESSION['diagrama']!=-1)
 {
     //cargar diagrama  
     // echo 'CARGANDO DIAGRAMA';
+
+    if($_SESSION['diagrama']->datos!=null)
+    {
+        echo '<script>';
+        echo 'loadDiagram(';
+        echo '\''.$_SESSION['diagrama']->datos.'\'';
+        echo ');';
+        echo '</script>';
+    
+    }
+
+    // else
+    // {
+
+    // }
+
+   
+
+    // $nombre=$_SESSION['diagrama']->nombre;
+    
+   
+    $nombre = $_SESSION['diagrama']->nombre; 
+    var_dump($nombre);
     echo '<script>';
-    echo 'loadDiagram(';
-    echo '\''.$_SESSION['diagrama']->datos.'\'';
+    echo 'onEditor(';
+    echo '\''.$nombre.'\'';
     echo ');';
     echo '</script>';
+
 }
 
 else

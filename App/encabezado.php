@@ -41,7 +41,7 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
                     <li class="nav-item active">
                     
-                       
+                       <h3 class="text-info d-none" id="titulo" name="titulo"> Titulo del diagrama </h3>
 
                     </li>
                     <!-- <li class="nav-item">
