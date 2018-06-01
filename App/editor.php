@@ -234,7 +234,7 @@ if(isset($_SESSION['diagrama']) && $_SESSION['diagrama']!=-1)
     
    
     $nombre = $_SESSION['diagrama']->nombre; 
-    var_dump($nombre);
+    // var_dump($nombre);
     echo '<script>';
     echo 'onEditor(';
     echo '\''.$nombre.'\'';
